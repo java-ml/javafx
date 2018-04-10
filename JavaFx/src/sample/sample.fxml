@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Button fx:id="OkB" layoutX="38.0" layoutY="174.0" mnemonicParsing="false" onAction="#Check" text="check" textFill="#8a3959" textOverrun="CLIP" />
+      <Text layoutX="17.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X    |    Y" wrappingWidth="108.0">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <ScatterChart fx:id="sc" layoutX="140.0" layoutY="57.0" prefHeight="325.0" prefWidth="460.0" style="-fx-background-color: pink;" title="date">
+        <xAxis>
+          <NumberAxis layoutY="20.0" prefHeight="28.0" prefWidth="402.0" />
+        </xAxis>
+
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </ScatterChart>
+      <TextField layoutX="13.0" layoutY="119.0" prefHeight="26.0" prefWidth="51.0" fx:id="x" />
+      <TextField fx:id="y" layoutX="70.0" layoutY="119.0" prefHeight="26.0" prefWidth="51.0" />
+      <MenuBar layoutY="3.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="ope" mnemonicParsing="false" onAction="#NeWindows" text="Open" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="file" mnemonicParsing="false" onAction="#OpenFile" text="OpenFile" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="Clo" mnemonicParsing="false" onAction="#closs" text="Cloess" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem fx:id="ran" mnemonicParsing="false" onAction="#Rand" text="rand" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</Pane>
