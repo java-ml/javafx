@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Button layoutX="465.0" layoutY="7.0" mnemonicParsing="false" onAction="#setCloss" text="X">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff0c0c" />
+                  <Stop color="#ff0d0d" offset="0.9360269360269361" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button layoutX="433.0" layoutY="7.0" mnemonicParsing="false" onAction="#setMini" text="-">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff0c0c" />
+                  <Stop color="#ff0d0d" offset="0.9360269360269361" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <TextField fx:id="url" layoutX="54.0" layoutY="51.0" opacity="0.77" />
+      <Text fill="#5a05ed" layoutX="30.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Url: " wrappingWidth="23.74023300409317" />
+      <Text fill="#7a0583" layoutX="14.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Token: " />
+      <TextField fx:id="token" layoutX="55.0" layoutY="90.0" opacity="0.72" />
+      <Text fill="#540479" layoutX="253.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time (&lt;=10s) :" wrappingWidth="98.125" />
+      <TextField fx:id="time" layoutX="267.0" layoutY="91.0" opacity="0.78" prefHeight="23.0" prefWidth="60.0" text="1" />
+      <Text fill="#eb0909" layoutX="334.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="s" />
+      <Button layoutX="391.0" layoutY="51.0" mnemonicParsing="false" onAction="#Start" text="start">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff0c0c" />
+                  <Stop color="#ff0d0d" offset="0.9" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button layoutX="391.0" layoutY="91.0" mnemonicParsing="false" onAction="#Stop" text="stop">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff0c0c" />
+                  <Stop color="#ff0d0d" offset="0.9360269360269361" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <TextArea fx:id="update" layoutX="29.0" layoutY="160.0" opacity="0.6" prefHeight="170.0" prefWidth="433.0" />
+      <Text fill="#540479" layoutX="30.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="update  urls :" wrappingWidth="98.125" />
+      <Separator layoutX="-1.0" layoutY="123.0" prefHeight="8.0" prefWidth="503.0" />
+      <Separator layoutY="333.0" prefHeight="0.0" prefWidth="503.0" />
+      <Separator layoutX="-1.0" layoutY="36.0" prefHeight="3.0" prefWidth="503.0" />
+      <Separator layoutX="495.0" layoutY="126.0" orientation="VERTICAL" prefHeight="373.0" prefWidth="8.0" />
+      <Separator layoutX="1.0" layoutY="126.0" orientation="VERTICAL" prefHeight="373.0" prefWidth="8.0" />
+      <Text fill="#540479" layoutX="21.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="baidu tool" wrappingWidth="98.125" />
+      <Separator layoutX="1.0" layoutY="465.0" prefHeight="8.0" prefWidth="503.0" />
+      <TextArea fx:id="resul" layoutX="29.0" layoutY="337.0" opacity="0.57" prefHeight="127.0" prefWidth="433.0" text="提交结果:&#10;" />
+   </children>
+</Pane>
