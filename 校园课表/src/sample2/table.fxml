@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<TableView  fx:controller="sample2.Controller" fx:id="table" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="765.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+  <columns>
+      <TableColumn fx:id="num" editable="false" prefWidth="81.0" sortable="false" text="节次" />
+    <TableColumn fx:id="Yi" editable="false" prefWidth="109.0" sortable="false" text="星期一" />
+    <TableColumn fx:id="Er" editable="false" prefWidth="75.0" sortable="false" text="星期二" />
+      <TableColumn fx:id="San" editable="false" prefWidth="75.0" sortable="false" text="星期三" />
+      <TableColumn fx:id="Si" editable="false" prefWidth="75.0" sortable="false" text="星期四" />
+      <TableColumn fx:id="Wu" editable="false" prefWidth="75.0" sortable="false" text="星期五" />
+      <TableColumn fx:id="Liu" editable="false" prefWidth="75.0" sortable="false" text="星期六" />
+      <TableColumn fx:id="Qi" editable="false" prefWidth="75.0" sortable="false" text="星期天" />
+  </columns>
+   <columnResizePolicy>
+      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+   </columnResizePolicy>
+</TableView>
