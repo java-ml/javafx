@@ -5,44 +5,47 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+
+import java.util.Random;
+
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader =new FXMLLoader(getClass().getResource("sample.fxml"));
-        Parent root = loader.load();
-                //FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Controller con=loader.getController();
-       con.st=primaryStage;
-       con.root=root;
-        Group g=new Group(root);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = fxmlLoader.load();
+        Controller controller = fxmlLoader.getController();
+        LineChart chart=controller.chart;
+        Random rand = new Random();
+            int i = 2000;
+            chart.getData().clear();
+            XYChart.Series<String, Number> series = new XYChart.Series();
+            while (i < 2018) {
+                series.getData().addAll(new XYChart.Data<String, Number>(String.valueOf(i),rand.nextInt(40)+38 ));
+                i++;
+            }
 
-        Circle circle = new Circle();
+            chart.getData().addAll(series);
 
-        circle.setCenterX(100);
-        circle.setCenterY(400);
-        circle.setRadius(50.0f);
-        g.getChildren().add(circle);
-        primaryStage.setTitle("数据可视化图表");
-        primaryStage.setScene(new Scene(g, 600, 420));
+        primaryStage.setTitle("折线图");
+        Application.setUserAgentStylesheet(STYLESHEET_CASPIAN);
+        Group group=new Group();
+       Scene scene= new Scene(group, 600, 375);
+       group.getChildren().add(root);
 
+
+       // view.setRotate(90);
+
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    @Override
-    public void init() throws Exception {
-        super.init();
-
-    }
 
     public static void main(String[] args) {
-
         launch(args);
 
     }

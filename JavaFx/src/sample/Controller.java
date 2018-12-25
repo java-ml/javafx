@@ -1,73 +1,116 @@
 package sample;
-import javafx.application.Platform;
-import javafx.scene.Group;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
-import java.io.File;
-
+import java.util.Random;
 
 public class Controller {
+    boolean bool = true;
+    Stage stage;
     @FXML
-    Button OkB;
+    Button on;
     @FXML
-    TextField x,y;
+    TextField fie;
     @FXML
-    ScatterChart <Double,Double>sc;
+    ProgressBar prog;
     @FXML
-    MenuItem ope;
-    Stage st;
-    Parent root;
-    public  void  Check(ActionEvent e){
+    LineChart chart;
+    @FXML
+    ProgressIndicator pi;
+    Timeline anm;
+    Service<String> service = new Service<String>() {
+        @Override
+        protected Task<String> createTask() {
+            return new Task<String>() {
+                @Override
+                protected String call() throws Exception {
+                    for (int a = 1; a <= 100; a++) {
+                        //更新service的value属性
 
-        XYChart.Series<Double,Double> series1 = new XYChart.Series();
-        series1.getData().add(new XYChart.Data(Double.valueOf(x.getText()), Double.valueOf(y.getText())));
-        System.out.println(e.getEventType()+"on");
-        OkB.setText("On");
-       sc.getData().addAll(series1);
-    }
-    public  void NeWindows(ActionEvent e){
-        try {
+                        updateValue("process:" + a + "%");
+                        updateProgress(a, 100);
+                        Thread.sleep(50);
+                    }
 
-            Parent anotherRoot = FXMLLoader.load(getClass().getResource("sample.fxml"));
-            Stage anotherStage = new Stage();
-            anotherStage.setTitle("Another Window Triggered by Clicking");
-            anotherStage.setScene(new Scene(anotherRoot, 600, 329));
-            anotherStage.show();
-        } catch (Exception e1){
-            e1.printStackTrace();
+                    return "success";
+                }
+            };
         }
-    }
-    public  void OpenFile(ActionEvent e){
+    };
+    EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
+        Random rand = new Random();
 
-        try {
-            FileChooser chooser =new FileChooser();
-            chooser.setTitle("date file");
-            chooser.setInitialDirectory(new File("/"));
-            File file=chooser.showOpenDialog(st);
+        @Override
+        public void handle(ActionEvent event) {
 
-            System.out.print(file.getPath());
-            } catch (Exception e1){
-            e1.printStackTrace();
+            int i = 2000;
+            chart.getData().clear();
+            XYChart.Series<String, Number> series = new XYChart.Series();
+            while (i < 2018) {
+                series.getData().addAll(new XYChart.Data<String, Number>(String.valueOf(i),rand.nextInt(40)+38 ));
+                i++;
+            }
+
+            chart.getData().addAll(series);
         }
-    }
+    };
+       EventHandler<ActionEvent> event3=new EventHandler<ActionEvent>() {
+            Random rand=new Random();
 
-    public void Rand(ActionEvent e) {
-        Platform.runLater(new RandemDate(sc));
-    }
+            @Override
+            public void handle(ActionEvent event) {
 
-    public void closs(ActionEvent e) {
-       System.exit(0);
+                chart.getData().clear();
+                XYChart.Series<String,Number>  series=new XYChart.Series();
+
+
+                chart.getData().addAll(series);
+            }
+        };
+
+    @FXML
+    protected void ButtonAction(ActionEvent event) {
+
+        pi.indeterminateProperty();
+        prog.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val,
+                                             Number new_val) -> {
+
+            pi.setProgress(new_val.doubleValue());
+        });
+
+        if (bool) {
+            bool=false;
+            anm = new Timeline();
+            anm.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, event1) , new KeyFrame(Duration.seconds(1.5), event3));
+            anm.setCycleCount(Animation.INDEFINITE);
+
+            anm.play();
+            prog.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val,
+                                                 Number new_val) -> {
+
+                if (new_val.equals(0.99)){ anm.stop();bool=true;}
+
+            });
+            service.restart();
+            fie.textProperty().bind(service.valueProperty());
+            prog.progressProperty().bind(service.progressProperty());
+        }
+
     }
 }
